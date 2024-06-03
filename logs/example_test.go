@@ -10,7 +10,7 @@ import (
 
 func Example() {
 	middlewares := middleware.Middleware()
-	middlewares.Add(middleware.New().Logging().Middleware)
+	middlewares.Add(middleware.New().Logs().Middleware)
 
 	mux := http.NewServeMux()
 
@@ -19,7 +19,7 @@ func Example() {
 	mux.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 
-		logger := middleware.New().Logging().Value(ctx)
+		logger := middleware.New().Logs().Value(ctx)
 
 		var response = map[string]interface{}{
 			"key": "value",

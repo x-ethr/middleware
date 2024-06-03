@@ -62,5 +62,11 @@ func Test(t *testing.T) {
 				t.Fatalf("Null Middleware Interface Returned")
 			}
 		})
+
+		t.Run("Logs", func(t *testing.T) {
+			if v := middleware.New().Logs(); v == nil {
+				t.Fatalf("Null Middleware Interface Returned")
+			}
+		})
 	})
 }

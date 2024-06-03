@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/x-ethr/middleware/envoy"
-	"github.com/x-ethr/middleware/logging"
+	"github.com/x-ethr/middleware/logs"
 	"github.com/x-ethr/middleware/name"
 	"github.com/x-ethr/middleware/path"
 	"github.com/x-ethr/middleware/servername"
@@ -48,8 +48,8 @@ func (*generic) State() state.Implementation {
 	return state.New()
 }
 
-func (*generic) Logging() logging.Implementation {
-	return logging.New()
+func (*generic) Logs() logs.Implementation {
+	return logs.New()
 }
 
 type Interface interface {
@@ -61,7 +61,7 @@ type Interface interface {
 	Envoy() envoy.Implementation        // Envoy - See the [envoy] package for additional details.
 	Tracer() tracing.Implementation     // Tracer - See the [tracing] package for additional details.
 	State() state.Implementation        // State - See the [state] package for additional details.
-	Logging() logging.Implementation    // Logging - See the [logging] package for additional details.
+	Logs() logs.Implementation          // Logging - See the [logs] package for additional details.
 }
 
 var v = &generic{}

@@ -1,4 +1,4 @@
-package logging_test
+package logs_test
 
 import (
 	"encoding/json"

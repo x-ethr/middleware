@@ -27,10 +27,10 @@ type Store interface {
 	//   - Used for configuring middleware that sets the "Server" response header.
 	Server() Key
 
-	// Logging represents the context.Context key: "logging". See [logging.Implementation] for the middleware.
+	// Logs represents the context.Context key: "logs". See [logs.Implementation] for the middleware.
 	//
 	//   - Used for configuring middleware that sets a [log/slog] context value.
-	Logging() Key
+	Logs() Key
 
 	// Timeout represents the context.Context key: "timeout". See [timeout.Implementation] for the middleware.
 	//
@@ -80,7 +80,7 @@ func (s store) Tracer() Key { return "tracer" }
 
 func (s store) State() Key { return "state" }
 
-func (s store) Logging() Key { return "logging" }
+func (s store) Logs() Key { return "logs" }
 
 var s = store{}
 

@@ -50,6 +50,9 @@ type Store interface {
 
 	// State represents the context.Context key: "state". See [state.Implementation] for the middleware.
 	State() Key
+
+	// CORS represents the context.Context key: "cors". See [cors.Implementation] for the middleware.
+	CORS() Key
 }
 
 type store struct{}
@@ -81,6 +84,8 @@ func (s store) Tracer() Key { return "tracer" }
 func (s store) State() Key { return "state" }
 
 func (s store) Logs() Key { return "logs" }
+
+func (s store) CORS() Key { return "cors" }
 
 var s = store{}
 

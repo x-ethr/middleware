@@ -8,6 +8,7 @@ import (
 	"github.com/x-ethr/middleware/logs"
 	"github.com/x-ethr/middleware/name"
 	"github.com/x-ethr/middleware/path"
+	"github.com/x-ethr/middleware/rip"
 	"github.com/x-ethr/middleware/servername"
 	"github.com/x-ethr/middleware/state"
 	"github.com/x-ethr/middleware/timeout"
@@ -57,6 +58,10 @@ func (*generic) CORS() cors.Implementation {
 	return cors.New()
 }
 
+func (*generic) RIP() rip.Implementation {
+	return rip.New()
+}
+
 type Interface interface {
 	Path() path.Implementation          // Path - See the [path] package for additional details.
 	Version() versioning.Implementation // Version - See the [versioning] package for additional details.
@@ -66,8 +71,9 @@ type Interface interface {
 	Envoy() envoy.Implementation        // Envoy - See the [envoy] package for additional details.
 	Tracer() tracing.Implementation     // Tracer - See the [tracing] package for additional details.
 	State() state.Implementation        // State - See the [state] package for additional details.
-	Logs() logs.Implementation          // Logging - See the [logs] package for additional details.
+	Logs() logs.Implementation          // Logs - See the [logs] package for additional details.
 	CORS() cors.Implementation          // CORS - See the [cors] package for additional details.
+	RIP() rip.Implementation            // RIP - See the [rip] package for additional details.
 }
 
 var v = &generic{}

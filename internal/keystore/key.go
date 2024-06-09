@@ -53,6 +53,9 @@ type Store interface {
 
 	// CORS represents the context.Context key: "cors". See [cors.Implementation] for the middleware.
 	CORS() Key
+
+	// RIP represents the context.Context key: "real-ip". See [rip.Implementation] for the middleware.
+	RIP() Key
 }
 
 type store struct{}
@@ -86,6 +89,8 @@ func (s store) State() Key { return "state" }
 func (s store) Logs() Key { return "logs" }
 
 func (s store) CORS() Key { return "cors" }
+
+func (s store) RIP() Key { return "real-ip" }
 
 var s = store{}
 

@@ -7,9 +7,12 @@ import (
 
 type Implementation interface {
 	Value(ctx context.Context) bool
+	Configuration(options ...Variadic) Implementation
 	Middleware(next http.Handler) http.Handler
 }
 
 func New() Implementation {
-	return &generic{}
+	return &generic{
+		options: settings(),
+	}
 }

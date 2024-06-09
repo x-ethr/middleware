@@ -5,11 +5,12 @@ import (
 	"net/http"
 
 	"github.com/x-ethr/middleware"
+	"github.com/x-ethr/middleware/cors"
 )
 
 func Example() {
 	middlewares := middleware.Middleware()
-	middlewares.Add(middleware.New().CORS().Middleware)
+	middlewares.Add(middleware.New().CORS().Configuration(func(options *cors.Settings) { options.Debug = true }).Middleware)
 
 	mux := http.NewServeMux()
 

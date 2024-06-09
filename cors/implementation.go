@@ -12,13 +12,26 @@ import (
 
 type generic struct {
 	types.Valuer[string]
+
+	options *Settings
+}
+
+func (g *generic) Configuration(options ...Variadic) Implementation {
+	var o = settings()
+	for _, option := range options {
+		option(o)
+	}
+
+	g.options = o
+
+	return g
 }
 
 func (*generic) Value(ctx context.Context) bool {
 	return ctx.Value(key).(bool)
 }
 
-func (*generic) Middleware(next http.Handler) http.Handler {
+func (g *generic) Middleware(next http.Handler) http.Handler {
 	wrapper := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 
@@ -47,7 +60,7 @@ func (*generic) Middleware(next http.Handler) http.Handler {
 		ExposedHeaders:   []string{"*"},
 		AllowCredentials: true,
 		MaxAge:           300, // Maximum value not ignored by any of major browsers
-		Debug:            true,
+		Debug:            g.options.Debug,
 	})
 
 	return c.Handler(wrapper)

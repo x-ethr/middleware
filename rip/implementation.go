@@ -37,11 +37,11 @@ func evaluate(r *http.Request) string {
 }
 
 type generic struct {
-	types.Valuer[RIP]
+	types.Valuer[*RIP]
 }
 
-func (*generic) Value(ctx context.Context) RIP {
-	return ctx.Value(key).(RIP)
+func (*generic) Value(ctx context.Context) *RIP {
+	return ctx.Value(key).(*RIP)
 }
 
 func (*generic) Middleware(next http.Handler) http.Handler {
@@ -56,7 +56,7 @@ func (*generic) Middleware(next http.Handler) http.Handler {
 				ip = rip
 			}
 
-			value := RIP{
+			value := &RIP{
 				Remote: r.RemoteAddr,
 				Real:   ip,
 			}

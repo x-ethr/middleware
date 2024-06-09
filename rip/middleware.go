@@ -11,7 +11,7 @@ type RIP struct {
 }
 
 type Implementation interface {
-	Value(ctx context.Context) RIP
+	Value(ctx context.Context) *RIP
 	Middleware(next http.Handler) http.Handler
 }
 

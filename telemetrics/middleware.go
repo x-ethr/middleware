@@ -10,7 +10,7 @@ type Telemetry struct {
 }
 
 type Implementation interface {
-	Value(ctx context.Context) *Telemetry
+	Value(ctx context.Context) Telemetry
 	Configuration(options ...Variadic) Implementation
 	Middleware(next http.Handler) http.Handler
 }

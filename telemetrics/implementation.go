@@ -25,15 +25,15 @@ func (g *generic) Configuration(options ...Variadic) Implementation {
 	return g
 }
 
-func (*generic) Value(ctx context.Context) *Telemetry {
-	return ctx.Value(key).(*Telemetry)
+func (*generic) Value(ctx context.Context) Telemetry {
+	return ctx.Value(key).(Telemetry)
 }
 
 func (g *generic) Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ctx := r.Context()
 
-		value := &Telemetry{
+		value := Telemetry{
 			Headers: make(map[string]string),
 		}
 

@@ -1,4 +1,4 @@
-package telemetry_test
+package telemetrics_test
 
 import (
 	"encoding/json"

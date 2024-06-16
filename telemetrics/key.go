@@ -1,4 +1,4 @@
-package telemetry
+package telemetrics
 
 import "github.com/x-ethr/middleware/keystore"
 

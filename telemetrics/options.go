@@ -1,4 +1,4 @@
-package telemetry
+package telemetrics
 
 import (
 	"log/slog"

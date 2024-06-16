@@ -56,6 +56,9 @@ type Store interface {
 
 	// RIP represents the context.Context key: "real-ip". See [rip.Implementation] for the middleware.
 	RIP() Key
+
+	// Telemetry represents the context.Context key: "telemetry". See [telemetry.Implementation] for the middleware.
+	Telemetry() Key
 }
 
 type store struct{}
@@ -91,6 +94,8 @@ func (s store) Logs() Key { return "logs" }
 func (s store) CORS() Key { return "cors" }
 
 func (s store) RIP() Key { return "real-ip" }
+
+func (s store) Telemetry() Key { return "telemetry" }
 
 var s = store{}
 

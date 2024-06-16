@@ -11,6 +11,7 @@ import (
 	"github.com/x-ethr/middleware/rip"
 	"github.com/x-ethr/middleware/servername"
 	"github.com/x-ethr/middleware/state"
+	"github.com/x-ethr/middleware/telemetry"
 	"github.com/x-ethr/middleware/timeout"
 	"github.com/x-ethr/middleware/tracing"
 	"github.com/x-ethr/middleware/versioning"
@@ -62,18 +63,23 @@ func (*generic) RIP() rip.Implementation {
 	return rip.New()
 }
 
+func (*generic) Telemetry() telemetry.Implementation {
+	return telemetry.New()
+}
+
 type Interface interface {
-	Path() path.Implementation          // Path - See the [path] package for additional details.
-	Version() versioning.Implementation // Version - See the [versioning] package for additional details.
-	Service() name.Implementation       // Service - See the [name] package for additional details.
-	Server() servername.Implementation  // Server - See the [servername] package for additional details.
-	Timeout() timeout.Implementation    // Timeout - See the [timeout] package for additional details.
-	Envoy() envoy.Implementation        // Envoy - See the [envoy] package for additional details.
-	Tracer() tracing.Implementation     // Tracer - See the [tracing] package for additional details.
-	State() state.Implementation        // State - See the [state] package for additional details.
-	Logs() logs.Implementation          // Logs - See the [logs] package for additional details.
-	CORS() cors.Implementation          // CORS - See the [cors] package for additional details.
-	RIP() rip.Implementation            // RIP - See the [rip] package for additional details.
+	Path() path.Implementation           // Path - See the [path] package for additional details.
+	Version() versioning.Implementation  // Version - See the [versioning] package for additional details.
+	Service() name.Implementation        // Service - See the [name] package for additional details.
+	Server() servername.Implementation   // Server - See the [servername] package for additional details.
+	Timeout() timeout.Implementation     // Timeout - See the [timeout] package for additional details.
+	Envoy() envoy.Implementation         // Envoy - See the [envoy] package for additional details.
+	Tracer() tracing.Implementation      // Tracer - See the [tracing] package for additional details.
+	State() state.Implementation         // State - See the [state] package for additional details.
+	Logs() logs.Implementation           // Logs - See the [logs] package for additional details.
+	CORS() cors.Implementation           // CORS - See the [cors] package for additional details.
+	RIP() rip.Implementation             // RIP - See the [rip] package for additional details.
+	Telemetry() telemetry.Implementation // Telemetry - See the [telemetry] package for additional details.
 }
 
 var v = &generic{}

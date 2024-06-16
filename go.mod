@@ -4,6 +4,7 @@ go 1.22.3
 
 require (
 	github.com/rs/cors v1.11.0
+	github.com/x-ethr/levels v0.1.2
 	go.opentelemetry.io/otel v1.27.0
 	go.opentelemetry.io/otel/trace v1.27.0
 )

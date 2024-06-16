@@ -59,6 +59,9 @@ type Store interface {
 
 	// Telemetry represents the context.Context key: "telemetry". See [telemetry.Implementation] for the middleware.
 	Telemetry() Key
+
+	// Authentication adds jwt-enforced middleware and a context key containing JWT-related claims data. See [authentication.Implementation] for the middleware.
+	Authentication() Key
 }
 
 type store struct{}
@@ -96,6 +99,8 @@ func (s store) CORS() Key { return "cors" }
 func (s store) RIP() Key { return "real-ip" }
 
 func (s store) Telemetry() Key { return "telemetry" }
+
+func (s store) Authentication() Key { return "authentication" }
 
 var s = store{}
 

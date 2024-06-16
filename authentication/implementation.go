@@ -124,6 +124,12 @@ func (g *generic) Middleware(next http.Handler) http.Handler {
 			authentication.Email = value
 		}
 
+		{ // --> token
+			value := jwttoken
+
+			authentication.Token = value
+		}
+
 		ctx = context.WithValue(ctx, key, authentication)
 
 		next.ServeHTTP(w, r.WithContext(ctx))

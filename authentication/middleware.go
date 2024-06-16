@@ -3,9 +3,12 @@ package authentication
 import (
 	"context"
 	"net/http"
+
+	"github.com/golang-jwt/jwt/v5"
 )
 
 type Authentication struct {
+	Token *jwt.Token
 	Email string `json:"-"` // Email represents the user's email address as set by the "sub" jwt-claims structure.
 }
 

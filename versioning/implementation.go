@@ -38,18 +38,17 @@ func (g *generic) Middleware(next http.Handler) http.Handler {
 		ctx := r.Context()
 
 		{
-			value := g.options.Version
+			value := Version{Service: g.options.Version.Service, API: r.Header.Get(http.CanonicalHeaderKey("X-API-Version"))}
 
+			api := value.API
 			service := value.Service
 
-			slog.Log(ctx, (slog.LevelDebug - 4), "Middleware", slog.Group("context", slog.String("key", string(key)), slog.Any("value", map[string]string{"service": service})))
+			slog.Log(ctx, (slog.LevelDebug - 4), "Middleware", slog.Group("context", slog.String("key", string(key)), slog.Any("value", value)))
 
 			ctx = context.WithValue(ctx, key, value)
 
 			w.Header().Set("X-Service-Version", service)
-			if v := r.Header.Get(http.CanonicalHeaderKey("X-API-Version")); v != "" {
-				w.Header().Set("X-API-Version", v)
-			}
+			w.Header().Set("X-API-Version", api)
 		}
 
 		next.ServeHTTP(w, r.WithContext(ctx))

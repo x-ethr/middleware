@@ -7,6 +7,7 @@ import (
 
 type Version struct {
 	Service string `json:"service" yaml:"service"`
+	API     string `json:"api" yaml:"api"`
 }
 
 type Implementation interface {

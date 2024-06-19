@@ -14,6 +14,8 @@ type Authentication struct {
 	Issuer   string // Issuer is the issuing service that generated the jwt, as set by the "iss" jwt-claims structure.
 	Email    string // Email represents the user's email address as set by the "sub" jwt-claims structure.
 	Raw      string // Raw represents the raw jwt token as submitted by the client.
+
+	ID interface{} // ID represents a custom identifier field, as set by the "id" non-standard jwt-claims structure. Defaults to nil.
 }
 
 type Implementation interface {

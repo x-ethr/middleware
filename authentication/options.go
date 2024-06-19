@@ -30,10 +30,20 @@ type Claim[Generic struct{}] interface {
 	Data() *Generic
 }
 
+type Fields struct {
+	ID bool // ID represents the evaluation of the [Authentication.ID] [String] field. Defaults to false, which will always call [String.Value] to return "".
+}
+
 type Settings struct {
 	Verification func(ctx context.Context, token string) (*jwt.Token, error) // Verification is a user-provided jwt-verification function.
 
 	Level slog.Leveler // Level represents a [log/slog] log level - defaults to (slog.LevelDebug - 4) (trace)
+
+	Fields Fields
+}
+
+func (s *Settings) ID() bool {
+	return s.Fields.ID
 }
 
 type Variadic types.Variadic[Settings]
@@ -41,5 +51,8 @@ type Variadic types.Variadic[Settings]
 func settings() *Settings {
 	return &Settings{
 		Level: (slog.LevelDebug - 4),
+		Fields: Fields{
+			ID: false,
+		},
 	}
 }

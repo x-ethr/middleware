@@ -148,6 +148,16 @@ func (g *generic) Middleware(next http.Handler) http.Handler {
 			authentication.Raw = value
 		}
 
+		{ // --> id
+			if g.options.ID() {
+				if v, ok := jwttoken.Claims.(jwt.MapClaims)["id"].(string); ok {
+					authentication.ID = String{
+						v: &v,
+					}
+				}
+			}
+		}
+
 		ctx = context.WithValue(ctx, key, authentication)
 
 		next.ServeHTTP(w, r.WithContext(ctx))

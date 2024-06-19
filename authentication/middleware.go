@@ -7,6 +7,28 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
+type Valuer[Generic interface{}] interface {
+	Value() Generic
+}
+
+type Field[Generic interface{}] struct {
+	v *Generic
+}
+
+type String Field[string]
+
+func (s String) Null() bool {
+	return s.v == nil
+}
+
+func (s String) Value() string {
+	if s.v == nil {
+		return ""
+	}
+
+	return *(s.v)
+}
+
 type Authentication struct {
 	Token *jwt.Token
 
@@ -14,6 +36,8 @@ type Authentication struct {
 	Issuer   string // Issuer is the issuing service that generated the jwt, as set by the "iss" jwt-claims structure.
 	Email    string // Email represents the user's email address as set by the "sub" jwt-claims structure.
 	Raw      string // Raw represents the raw jwt token as submitted by the client.
+
+	ID String // ID represents an arbitrary string identifier
 }
 
 type Implementation interface {

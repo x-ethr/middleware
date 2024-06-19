@@ -58,10 +58,8 @@ func (g *generic) Middleware(next http.Handler) http.Handler {
 					}
 				}
 			}
-
-			ctx = context.WithValue(ctx, key, value)
 		}
 
-		next.ServeHTTP(w, r.WithContext(ctx))
+		next.ServeHTTP(w, r.WithContext(context.WithValue(ctx, key, value)))
 	})
 }

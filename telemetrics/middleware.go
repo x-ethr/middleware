@@ -6,7 +6,7 @@ import (
 )
 
 type Telemetry struct {
-	Headers map[string]string `json:"-"` // Headers represents the headers derived from an http(s) request relating to telemetry.
+	Headers map[string]string // Headers represents the headers derived from an http(s) request relating to telemetry.
 }
 
 type Implementation interface {

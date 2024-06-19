@@ -15,7 +15,7 @@ type Authentication struct {
 	Email    string // Email represents the user's email address as set by the "sub" jwt-claims structure.
 	Raw      string // Raw represents the raw jwt token as submitted by the client.
 
-	ID interface{} // ID represents a custom identifier field, as set by the "id" non-standard jwt-claims structure. Defaults to nil.
+	// ID interface{} // ID represents a custom identifier field, as set by the "id" non-standard jwt-claims structure. Defaults to nil.
 }
 
 type Implementation interface {

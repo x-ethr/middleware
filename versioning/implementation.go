@@ -9,7 +9,7 @@ import (
 )
 
 type generic struct {
-	types.Valuer[string]
+	types.Valuer[Version]
 
 	options *Settings
 }

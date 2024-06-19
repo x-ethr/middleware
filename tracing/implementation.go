@@ -6,13 +6,9 @@ import (
 	"net/http"
 
 	"go.opentelemetry.io/otel/trace"
-
-	"github.com/x-ethr/middleware/types"
 )
 
 type generic struct {
-	types.Valuer[string]
-
 	options *Settings
 }
 

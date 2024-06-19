@@ -30,13 +30,7 @@ func (g *generic) Configuration(options ...Variadic) Implementation {
 }
 
 func (*generic) Value(ctx context.Context) *Authentication {
-	if v, ok := ctx.Value(key).(*Authentication); ok {
-		return v
-	}
-
-	slog.WarnContext(ctx, "Invalid Context Key for Authentication Middleware", slog.String("resolution", "returning zero value"))
-
-	return nil
+	return ctx.Value(key).(*Authentication)
 }
 
 func (g *generic) Middleware(next http.Handler) http.Handler {

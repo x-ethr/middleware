@@ -10,6 +10,7 @@ import (
 type Authentication struct {
 	Token *jwt.Token
 	Email string `json:"-"` // Email represents the user's email address as set by the "sub" jwt-claims structure.
+	Raw   string // Raw represents the raw jwt token as submitted by the client.
 }
 
 type Implementation interface {

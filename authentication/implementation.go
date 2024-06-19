@@ -136,6 +136,12 @@ func (g *generic) Middleware(next http.Handler) http.Handler {
 			authentication.Token = value
 		}
 
+		{ // --> raw
+			value := tokenstring
+
+			authentication.Raw = value
+		}
+
 		ctx = context.WithValue(ctx, key, authentication)
 
 		next.ServeHTTP(w, r.WithContext(ctx))

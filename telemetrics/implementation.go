@@ -4,6 +4,7 @@ import (
 	"context"
 	"log/slog"
 	"net/http"
+	"reflect"
 
 	"github.com/x-ethr/middleware/types"
 )
@@ -26,6 +27,10 @@ func (g *generic) Configuration(options ...Variadic) Implementation {
 }
 
 func (*generic) Value(ctx context.Context) *Telemetry {
+	v := ctx.Value(key)
+	t := reflect.TypeOf(v)
+	slog.Log(ctx, slog.LevelDebug-4, "Context-Value Type", slog.String("type", t.String()), slog.String("type", t.Name()))
+
 	if v, ok := ctx.Value(key).(*Telemetry); ok {
 		return v
 	}

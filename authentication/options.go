@@ -9,6 +9,27 @@ import (
 	"github.com/x-ethr/middleware/types"
 )
 
+type Claims[Generic struct{}] struct {
+	data *Generic // data represents the generic's custom claim data.
+
+	jwt.RegisteredClaims
+}
+
+// Data represents a getter for the generic's custom claim data.
+func (c Claims[Generic]) Data() *Generic {
+	return c.data
+}
+
+// Set represents a setter for the generic's custom claim data.
+func (c Claims[Generic]) Set(input *Generic) {
+	c.data = input
+}
+
+type Claim[Generic struct{}] interface {
+	Set(input *Generic)
+	Data() *Generic
+}
+
 type Settings struct {
 	Verification func(ctx context.Context, token string) (*jwt.Token, error) // Verification is a user-provided jwt-verification function.
 

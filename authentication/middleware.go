@@ -9,8 +9,11 @@ import (
 
 type Authentication struct {
 	Token *jwt.Token
-	Email string `json:"-"` // Email represents the user's email address as set by the "sub" jwt-claims structure.
-	Raw   string // Raw represents the raw jwt token as submitted by the client.
+
+	Audience string // Audience is the target recipient the JWT is intended for, as set by the "aud" jwt-claims structure.
+	Issuer   string // Issuer is the issuing service that generated the jwt, as set by the "iss" jwt-claims structure.
+	Email    string // Email represents the user's email address as set by the "sub" jwt-claims structure.
+	Raw      string // Raw represents the raw jwt token as submitted by the client.
 }
 
 type Implementation interface {

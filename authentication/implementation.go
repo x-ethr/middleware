@@ -124,6 +124,18 @@ func (g *generic) Middleware(next http.Handler) http.Handler {
 			authentication.Email = value
 		}
 
+		{ // --> issuer
+			value := jwttoken.Claims.(jwt.MapClaims)["iss"].(string)
+
+			authentication.Issuer = value
+		}
+
+		{ // --> audience
+			value := jwttoken.Claims.(jwt.MapClaims)["aud"].(string)
+
+			authentication.Audience = value
+		}
+
 		{ // --> token
 			value := jwttoken
 

@@ -62,6 +62,7 @@ func settings() *Settings {
 			"x-b3-flags",
 			"x-ot-span-context",
 			"x-api-version",
+			"x-testing-authorization",
 		},
 	}
 }

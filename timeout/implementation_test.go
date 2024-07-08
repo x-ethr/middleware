@@ -39,7 +39,7 @@ func Test(t *testing.T) {
 
 					defer w.Write(buffer)
 
-					w.Header().Set("Content-Type", "Application/JSON")
+					w.Header().Set("Content-Type", "application/json")
 
 					w.WriteHeader(http.StatusOK)
 
@@ -71,7 +71,7 @@ func Test(t *testing.T) {
 
 					defer w.Write(buffer)
 
-					w.Header().Set("Content-Type", "Application/JSON")
+					w.Header().Set("Content-Type", "application/json")
 
 					w.WriteHeader(http.StatusOK)
 
